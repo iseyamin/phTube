@@ -29,7 +29,24 @@ loadCatagories()
 //video components:
 // authors
 // : 
-// [{…}]
+// Array(1)
+// 0
+// : 
+// profile_name
+// : 
+// "Olivia Mitchell"
+// profile_picture
+// : 
+// "https://i.pravatar.cc/150?img=1"
+// verified
+// : 
+// "true"
+// [[Prototype]]
+// : 
+// Object
+// length
+// : 
+// 1
 // category_id
 // : 
 // "1001"
@@ -63,18 +80,26 @@ const displayVideos=(videos)=>{
     //create card
     const videoCard=document.createElement('div');
     videoCard.innerHTML=`
-   <div class="card bg-base-100 shadow-sm">
-  <figure>
+   <div class="card bg-base-100 ">
+  <figure class="relative">
     <img
       src="${video.thumbnail}"
       alt="Shoes" />
+      <span class="absolute bottom-2 right-2 bg-black text-white rounded-lg px-2 text-sm">3hrs 56 min ago</span>
   </figure>
-  <div class="card-body">
-    <h2 class="card-title">${video.title}</h2>
-    <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
-    <div class="card-actions justify-end">
-      <button class="btn btn-primary">Buy Now</button>
-    </div>
+  <div class="mt-5 flex gap-3 px-0">
+   <div class="profile">
+    <div class="avatar">
+  <div class="ring-primary ring-offset-base-100 w-6 rounded-full ring-2 ring-offset-2">
+    <img alt="Tailwind-CSS-Avatar-component" src="${video.authors[0].profile_picture}" />
+  </div>
+</div>
+   </div>
+   <div class="intro">
+    <h2 class="font-semibold text-lg mb-2">${video.title}</h2>
+    <p class="text-sm text-gray-400 flex gap-1 items-center mb-2">${video.authors[0].profile_name} <img class="w-5 h-5" src="https://img.icons8.com/?size=96&id=98A4yZTt9abw&format=png" alt=""> </p>
+    <p class="text-sm text-gray-400">${video.others.views}</p>
+   </div>
   </div>
 </div>
 
