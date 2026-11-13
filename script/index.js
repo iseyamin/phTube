@@ -23,3 +23,22 @@ function displayCatagories(data){
     }
 }
 loadCatagories()
+
+//Load videos
+
+const loadVideos=()=>{
+    fetch('https://api.jsonbin.io/v3/b/6af6cfd9ffd5d16053be2a96')
+    .then(response=>response.json())
+    .then(data=>displayVideos(data.record.videos))
+}
+const displayVideos=(videos)=>{
+   //get video container
+   const videoContainer=document.getElementById('video_container')
+   //foreach loop
+   videos.forEach((video)=>{
+    console.log(video);
+   })
+}
+
+
+loadVideos()
