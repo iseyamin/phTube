@@ -10,18 +10,27 @@
 </head>
 <body>
    <header>
-    <nav class="w-11/12 mx-auto flex justify-between mt-5 mb-5 border-b-1">
+    <nav class="w-11/12 mx-auto flex justify-between items-center mt-5 mb-5 border-b-2 border-[#17171720] py-3">
         <div class="">
-            <img src="Logo.png" alt="">
+            <img class="w-28" src="Logo.png" alt="">
         </div>
         <div>
             <button class="btn btn-active">Sort By View</button>
         </div>
         <div>
-            <button class="btn bg-red-800 text-white">Blog</button>
+            <button class="btn bg-[#FF1F3D] text-white">Blog</button>
         </div>
     </nav>
+    <!-- 2nd nav bar -->
+     <nav id="catagory-btn-container" class="flex py-5 justify-center gap-5">
+       <button class="btn btn-sm">All</button>
+       <button class="btn btn-sm">Music</button>
+       <button class="btn btn-sm">Comedy</button>
+       <button class="btn btn-sm">Drawing</button>
+     </nav>
    </header>
     
+
+   <script src="script/index.js"></script>
 </body>
 </html>
