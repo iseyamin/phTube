@@ -11,6 +11,12 @@
       type="text/css"
     />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        .active{
+            background-color:purple ; 
+            color: white;
+        }
+    </style>
   </head>
   <body>
     <header>
@@ -30,7 +36,7 @@
       <!-- 2nd nav bar -->
       <nav id="catagory-btn-container" class="flex py-5 justify-center gap-5">
         <div>
-          <button class="btn btn-sm bg-[#FF1F3D] text-white" onclick="loadVideos()">All</button>
+          <button id="all_btn" class="btn btn-sm bg-[#FF1F3D] text-white" onclick="loadVideos()">All</button>
         </div>
       </nav>
     </header>
@@ -40,6 +46,10 @@
       class="w-11/12 mx-auto grid grid-cols-2 lg:grid-cols-4 gap-5"
       id="video_container"
     >
+    <div class="col-span-full flex items-center flex-col py-20">
+        <img src="Icon.png" alt="">
+        <h2 class="font-extrabold text-4xl text-gray-700">Uffs Fuck!!</h2>
+    </div>
       <!-- <div class="card bg-base-100 ">
   <figure class="relative">
     <img

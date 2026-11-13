@@ -16,13 +16,22 @@ function displayCatagories(data){
         //create element
         const catagorydiv=document.createElement('div');
         catagorydiv.innerHTML=`
-        <button onclick="loadCatagoriesVideos(${cat.catagory_id})" class="btn btn-sm hover:bg-[#FF1F3D] hover:text-white">${cat.catagry}</button>
+        <button onclick="loadCatagoriesVideos(${cat.catagory_id})" id="btn-${cat.catagory_id}" class="btn btn-sm hover:bg-[#FF1F3D] hover:text-white">${cat.catagry}</button>
         `;
         //append the element
         btncontainer.appendChild(catagorydiv);
     }
 }
 loadCatagories()
+
+document.getElementById('all_btn').addEventListener('click',
+    ()=>{
+        removeactive() //remove previous active class
+   //add active class to static button
+    document.getElementById('all_btn').classList.add('active');
+    }
+)
+
 
 //Load videos
 
@@ -72,7 +81,7 @@ const loadVideos=()=>{
     .then(data=>displayVideos(data.record.videos))
 }
 const displayVideos=(videos)=>{
-   //get video container
+      //get video container
    const videoContainer=document.getElementById('video_container')
    videoContainer.innerHTML=""; //empty previous video container
    //foreach loop
@@ -112,13 +121,25 @@ const displayVideos=(videos)=>{
 }
 
 
+//remove active class from btn
+function removeactive(){
+    const btns=document.getElementsByClassName('active');
+
+    for(let i of btns){
+        i.classList.remove('active');
+    }
+}
 
 
+//catagory wise video
 const loadCatagoriesVideos=(id)=>{
  console.log(id)
  fetch('https://api.jsonbin.io/v3/b/6af6cfd9ffd5d16053be2a96')
  .then(res=>res.json())
  .then(data=>catVideo(data.record.videos,id));
+ const clickbtn=document.getElementById(`btn-${id}`)  //catch the clicked button
+ removeactive() //remove previous active class
+ clickbtn.classList.add('active') //add active class 
 }
 
 
