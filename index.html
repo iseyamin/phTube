@@ -1,36 +1,46 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>phTube</title>
     <!-- daisy ui CDN -->
-     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
-<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-</head>
-<body>
-   <header>
-    <nav class="w-11/12 mx-auto flex justify-between items-center mt-5 mb-5 border-b-2 border-[#17171720] py-3">
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body>
+    <header>
+      <nav
+        class="w-11/12 mx-auto flex justify-between items-center mt-5 mb-5 border-b-2 border-[#17171720] py-3"
+      >
         <div class="">
-            <img class="w-28" src="Logo.png" alt="">
+          <img class="w-28" src="Logo.png" alt="" />
         </div>
         <div>
-            <button class="btn btn-active">Sort By View</button>
+          <button class="btn btn-active">Sort By View</button>
         </div>
         <div>
-            <button class="btn bg-[#FF1F3D] text-white">Blog</button>
+          <button class="btn bg-[#FF1F3D] text-white">Blog</button>
         </div>
-    </nav>
-    <!-- 2nd nav bar -->
-     <nav id="catagory-btn-container" class="flex py-5 justify-center gap-5">
-      <div> <button class="btn btn-sm bg-[#FF1F3D] text-white">All</button></div>
-      
-     </nav>
-   </header>
-    
-   <!-- video container -->
-    <section class="w-11/12 mx-auto grid grid-cols-2 lg:grid-cols-4 gap-5" id="video_container">
-        <div class="card bg-base-100 ">
+      </nav>
+      <!-- 2nd nav bar -->
+      <nav id="catagory-btn-container" class="flex py-5 justify-center gap-5">
+        <div>
+          <button class="btn btn-sm bg-[#FF1F3D] text-white" onclick="loadVideos()">All</button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- video container -->
+    <section
+      class="w-11/12 mx-auto grid grid-cols-2 lg:grid-cols-4 gap-5"
+      id="video_container"
+    >
+      <!-- <div class="card bg-base-100 ">
   <figure class="relative">
     <img
       src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsUObh4ukQDwHjY2nYIsIx2vDAhwmDc9TZ5BDM0sHZmg&s=10"
@@ -51,9 +61,9 @@
     <p class="text-sm text-gray-400">91k views</p>
    </div>
   </div>
-</div>
+</div> -->
     </section>
 
-   <script src="script/index.js"></script>
-</body>
+    <script src="script/index.js"></script>
+  </body>
 </html>

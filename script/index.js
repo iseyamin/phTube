@@ -16,7 +16,7 @@ function displayCatagories(data){
         //create element
         const catagorydiv=document.createElement('div');
         catagorydiv.innerHTML=`
-        <button class="btn btn-sm hover:bg-[#FF1F3D] hover:text-white">${cat.catagry}</button>
+        <button onclick="loadCatagoriesVideos(${cat.catagory_id})" class="btn btn-sm hover:bg-[#FF1F3D] hover:text-white">${cat.catagry}</button>
         `;
         //append the element
         btncontainer.appendChild(catagorydiv);
@@ -74,6 +74,7 @@ const loadVideos=()=>{
 const displayVideos=(videos)=>{
    //get video container
    const videoContainer=document.getElementById('video_container')
+   videoContainer.innerHTML=""; //empty previous video container
    //foreach loop
    videos.forEach((video)=>{
     console.log(video);
@@ -105,9 +106,30 @@ const displayVideos=(videos)=>{
 
     `;
     //append child
+    
     videoContainer.appendChild(videoCard);
    })
 }
 
 
-loadVideos()
+
+
+const loadCatagoriesVideos=(id)=>{
+ console.log(id)
+ fetch('https://api.jsonbin.io/v3/b/6af6cfd9ffd5d16053be2a96')
+ .then(res=>res.json())
+ .then(data=>catVideo(data.record.videos,id));
+}
+
+
+const catVideo=(data,id)=>{
+    
+    //  data.forEach((videoo)=>{
+    // //    console.log(video.category_id)
+    //  if(videoo.category_id==id){
+    //     displayVideos(videoo)
+    //  })
+     
+    const filtered = data.filter(v => v.category_id == id);
+            displayVideos(filtered);
+}
