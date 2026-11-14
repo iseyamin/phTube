@@ -76,11 +76,13 @@ document.getElementById('all_btn').addEventListener('click',
 // "aaaa"
 
 const loadVideos = () => {
+    showLoader();
     fetch('https://api.jsonbin.io/v3/b/6af6cfd9ffd5d16053be2a96')
         .then(response => response.json())
         .then(data => displayVideos(data.record.videos))
 }
 const displayVideos = (videos) => {
+    
     //get video container
     const videoContainer = document.getElementById('video_container')
     videoContainer.innerHTML = ""; //empty previous video container
@@ -122,6 +124,7 @@ const displayVideos = (videos) => {
 
         videoContainer.appendChild(videoCard);
     })
+    hideLoader();  //hide loading
 }
 
 
@@ -137,6 +140,7 @@ function removeactive() {
 
 //catagory wise video
 const loadCatagoriesVideos = (id) => {
+    showLoader(); 
     console.log(id)
     fetch('https://api.jsonbin.io/v3/b/6af6cfd9ffd5d16053be2a96')
         .then(res => res.json())
@@ -208,3 +212,14 @@ const searchVideo=(txt)=>{
        displayVideos(filtered);
 
 })}
+
+
+//loader function
+const showLoader=()=>{
+    document.getElementById('loader').classList.remove('hidden')
+    document.getElementById('video_container').classList.add('hidden')
+}
+const hideLoader=()=>{
+    document.getElementById('loader').classList.add('hidden')
+    document.getElementById('video_container').classList.remove('hidden')
+}
