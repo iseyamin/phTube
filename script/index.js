@@ -190,3 +190,21 @@ const showdetails = (vid) => {
         })
 
 }
+
+
+//search video
+document.getElementById('search_text').addEventListener("keyup",
+    (e)=>{
+        const searchText=e.target.value.trim().toLowerCase();
+        searchVideo(searchText);
+    }
+);
+
+const searchVideo=(txt)=>{
+    fetch('https://api.jsonbin.io/v3/b/6af6cfd9ffd5d16053be2a96')
+        .then(res => res.json())
+        .then(data => {
+       const filtered=data.record.videos.filter(video=>video.title.toLowerCase().includes(txt));
+       displayVideos(filtered);
+
+})}
