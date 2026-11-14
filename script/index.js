@@ -1,21 +1,21 @@
-function loadCatagories(){
+function loadCatagories() {
     //fetch data
     fetch('https://api.jsonbin.io/v3/b/6af6a951ac6210605a8436e0')
-    //convert promise to json
-    .then(res=>res.json())
-    //send to another function
-    .then(data=>displayCatagories(data.record.catagories))
+        //convert promise to json
+        .then(res => res.json())
+        //send to another function
+        .then(data => displayCatagories(data.record.catagories))
 }
 
-function displayCatagories(data){
+function displayCatagories(data) {
     console.log(data)
     //get the container
-    const btncontainer=document.getElementById('catagory-btn-container')
+    const btncontainer = document.getElementById('catagory-btn-container')
     //run loop
-    for(let cat of data){
+    for (let cat of data) {
         //create element
-        const catagorydiv=document.createElement('div');
-        catagorydiv.innerHTML=`
+        const catagorydiv = document.createElement('div');
+        catagorydiv.innerHTML = `
         <button onclick="loadCatagoriesVideos(${cat.catagory_id})" id="btn-${cat.catagory_id}" class="btn btn-sm hover:bg-[#FF1F3D] hover:text-white">${cat.catagry}</button>
         `;
         //append the element
@@ -25,10 +25,10 @@ function displayCatagories(data){
 loadCatagories()
 
 document.getElementById('all_btn').addEventListener('click',
-    ()=>{
+    () => {
         removeactive() //remove previous active class
-   //add active class to static button
-    document.getElementById('all_btn').classList.add('active');
+        //add active class to static button
+        document.getElementById('all_btn').classList.add('active');
     }
 )
 
@@ -75,21 +75,21 @@ document.getElementById('all_btn').addEventListener('click',
 // : 
 // "aaaa"
 
-const loadVideos=()=>{
+const loadVideos = () => {
     fetch('https://api.jsonbin.io/v3/b/6af6cfd9ffd5d16053be2a96')
-    .then(response=>response.json())
-    .then(data=>displayVideos(data.record.videos))
+        .then(response => response.json())
+        .then(data => displayVideos(data.record.videos))
 }
-const displayVideos=(videos)=>{
-      //get video container
-   const videoContainer=document.getElementById('video_container')
-   videoContainer.innerHTML=""; //empty previous video container
-   //foreach loop
-   videos.forEach((video)=>{
-    console.log(video);
-    //create card
-    const videoCard=document.createElement('div');
-    videoCard.innerHTML=`
+const displayVideos = (videos) => {
+    //get video container
+    const videoContainer = document.getElementById('video_container')
+    videoContainer.innerHTML = ""; //empty previous video container
+    //foreach loop
+    videos.forEach((video) => {
+        console.log(video);
+        //create card
+        const videoCard = document.createElement('div');
+        videoCard.innerHTML = `
    <div class="card bg-base-100 ">
   <figure class="relative">
     <img
@@ -111,46 +111,79 @@ const displayVideos=(videos)=>{
     <p class="text-sm text-gray-400">${video.others.views}</p>
    </div>
   </div>
+  <button class="btn btn-block" onclick="showdetails('${video.video_id}')">Show details</button>
 </div>
 
     `;
-    //append child
-    
-    videoContainer.appendChild(videoCard);
-   })
+        //append child
+
+        videoContainer.appendChild(videoCard);
+    })
 }
 
 
 //remove active class from btn
-function removeactive(){
-    const btns=document.getElementsByClassName('active');
+function removeactive() {
+    const btns = document.getElementsByClassName('active');
 
-    for(let i of btns){
+    for (let i of btns) {
         i.classList.remove('active');
     }
 }
 
 
 //catagory wise video
-const loadCatagoriesVideos=(id)=>{
- console.log(id)
- fetch('https://api.jsonbin.io/v3/b/6af6cfd9ffd5d16053be2a96')
- .then(res=>res.json())
- .then(data=>catVideo(data.record.videos,id));
- const clickbtn=document.getElementById(`btn-${id}`)  //catch the clicked button
- removeactive() //remove previous active class
- clickbtn.classList.add('active') //add active class 
+const loadCatagoriesVideos = (id) => {
+    console.log(id)
+    fetch('https://api.jsonbin.io/v3/b/6af6cfd9ffd5d16053be2a96')
+        .then(res => res.json())
+        .then(data => catVideo(data.record.videos, id));
+    const clickbtn = document.getElementById(`btn-${id}`)  //catch the clicked button
+    removeactive() //remove previous active class
+    clickbtn.classList.add('active') //add active class 
 }
 
 
-const catVideo=(data,id)=>{
-    
+const catVideo = (data, id) => {
+
     //  data.forEach((videoo)=>{
     // //    console.log(video.category_id)
     //  if(videoo.category_id==id){
     //     displayVideos(videoo)
     //  })
-     
+
     const filtered = data.filter(v => v.category_id == id);
-            displayVideos(filtered);
+    displayVideos(filtered);
+}
+
+
+//video details function
+const showdetails = (vid) => {
+    console.log(vid)
+    fetch('https://api.jsonbin.io/v3/b/6af6cfd9ffd5d16053be2a96')
+        .then(res => res.json())
+        .then(data => {
+            const specificvideo = data.record.videos.find(element => element.video_id == vid);
+            console.log(specificvideo.description)
+
+            //receive modal
+            document.getElementById('videoDetails').showModal()
+            const detailsContainer = document.getElementById('video_details');
+            detailsContainer.innerHTML = `
+         <div class="card bg-base-100 image-full  shadow-sm">
+    <figure>
+    <img
+      src="${specificvideo.thumbnail}"
+      alt="Shoes" />
+  </figure>
+  <div class="card-body">
+    <h2 class="card-title">${specificvideo.title}</h2>
+    <p>${specificvideo.description}</p>
+    <div class="card-actions justify-center">
+    </div>
+  </div>
+  </div>
+        `;
+        })
+
 }
